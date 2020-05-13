@@ -14,7 +14,9 @@ public class FitnessDaoImpl implements FitnessDao {
 	
 	@Override
 	public LoginTO authenticate(LoginTO loginTO) {
-		List<LoginTO> returnObj = objLoginTO.stream().filter(login -> login.getUsername().equals(loginTO.getUsername())).collect(Collectors.toList());
+		List<LoginTO> returnObj = objLoginTO.stream().filter(login -> 
+				login.getUserId().equalsIgnoreCase(loginTO.getUserId()) && 
+				login.getPassword().equals(loginTO.getPassword())).collect(Collectors.toList());
 		
 		System.out.println("Authorized User: " + returnObj.toString());
 		return returnObj.get(0);
